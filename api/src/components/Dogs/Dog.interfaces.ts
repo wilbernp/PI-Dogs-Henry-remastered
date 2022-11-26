@@ -1,4 +1,4 @@
-export interface ICreateDog {
+export interface IDogCreate {
     breedsId: number[];
     temperamentId:number;
     userId:number

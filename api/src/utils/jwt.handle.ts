@@ -1,5 +1,6 @@
 import { sign} from "jsonwebtoken"
-import { IUserResponse, IUserTokenPayload } from "../interfaces/User.interfaces"
+import { IUserTokenPayload } from "../components/Users/User.interfaces"
+
 
 
 const {SECRET} = process.env

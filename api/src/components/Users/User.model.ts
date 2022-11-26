@@ -6,29 +6,7 @@ import {
     CreationOptional
 } from "sequelize";
 
-import { sequelize } from "../config/db-connection";
-// import { IRegisterUser } from "../../interfaces/User.interfaces";
-
-
-// const User = sequelize.define("user", {
-// name:{
-//     type:DataTypes.STRING(50),
-//     allowNull:false
-// },
-// lastname:{
-//     type:DataTypes.STRING(50)
-// },
-// email:{
-//     type:DataTypes.STRING(80),
-//     allowNull:false,
-//     unique:true
-// },
-// password:{
-//     type:DataTypes.STRING(50),
-//     allowNull:false
-// }
-
-// })
+import { sequelize } from "../../config/db-connection";
 
 export class User extends Model<InferAttributes<User>, InferCreationAttributes<User>>{
     declare id: CreationOptional<number>;
@@ -37,7 +15,7 @@ export class User extends Model<InferAttributes<User>, InferCreationAttributes<U
     declare email: string;
     declare password: string;
     declare createdAt: CreationOptional<Date>;
-    declare updatedAt: CreationOptional<Date>
+    declare updatedAt: CreationOptional<Date>;
 }
 
 User.init({

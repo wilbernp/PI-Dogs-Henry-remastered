@@ -1,8 +1,8 @@
-import { User } from "../db/models/User.model";
-import { IUserLogin, IUserRegister, IUserResponse, IUserTokenPayload } from "../interfaces/User.interfaces";
-import { encryptPassword, verifyPassword } from "../utils/bcrypt.handle";
-import { generateToken } from "../utils/jwt.handle";
-import { handleError, handleResponse } from "../utils/response.handle";
+import { User } from "./User.model";
+import { IUserLogin, IUserRegister, IUserResponse, IUserTokenPayload } from "./User.interfaces";
+import { encryptPassword, verifyPassword } from "../../utils/bcrypt.handle";
+import { generateToken } from "../../utils/jwt.handle";
+import { handleError, handleResponse } from "../../utils/response.handle";
 
 const generateUserResponse = (user:IUserResponse):IUserResponse=>{
     console.log(user)
@@ -31,11 +31,11 @@ export const registerService = async (user:IUserRegister) => {
     })
 
     const {dataValues} = newUser
-    
     const token = generateToken(dataValues)
     const userResponse = generateUserResponse({...dataValues, token})
     return handleResponse<IUserResponse>(userResponse, 201)
 }
+
 
 export const LoginService = async(user:IUserLogin) => {
     const {email, password} = user
@@ -51,11 +51,10 @@ export const LoginService = async(user:IUserLogin) => {
 
     const {dataValues} = findUser
     const passwordHass = dataValues.password
-
     const isCorrect = await verifyPassword(password, passwordHass)
 
     if (!isCorrect) {
-        return handleError("Email or Password incorrect!", 403)
+        return handleError("Email or Password incorrect!", 401)
     }
 
     const token = generateToken(dataValues)

@@ -1,5 +1,6 @@
 import { app } from "./app"
-import { sequelize } from "./db/config/db-connection"
+import { sequelize } from "./config/db-connection"
+
 
 const PORT = process.env.PORT || 3001
 app.listen(PORT, async () => {

@@ -1,7 +1,8 @@
 import { Request, Response } from "express";
-import { IUserLogin, IUserRegister } from "../interfaces/User.interfaces";
-import { LoginService, registerService } from "../services/auth.services";
-import { handleError } from "../utils/response.handle";
+
+import { handleError } from "../../utils/response.handle"; 
+import { registerService, LoginService } from "./auth.services";
+import { IUserLogin, IUserRegister } from "./User.interfaces";
 
 export const registerController = async (req:Request, res:Response) =>{
     const user:IUserRegister = req.body

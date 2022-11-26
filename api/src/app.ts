@@ -4,7 +4,8 @@ import cors from "cors";
 import morgan from "morgan";
 import { authenticate } from "./middlewares/auth";
 import { generateToken } from "./utils/jwt.handle";
-import { authRouter } from "./components/Users/auth.routes";
+import { authRouter } from "./routes/auth/auth.routes";
+import { apiRouter } from "./routes/api/index.routes";
 
 
 // consts 
@@ -15,6 +16,7 @@ app.use(express.json())
 app.use(morgan("dev"))
 
 app.use("/auth", authRouter)
+app.use("/api", apiRouter)
 
 // app.get("/", authenticate, (req, res)=>{
 //     console.log(req.user)

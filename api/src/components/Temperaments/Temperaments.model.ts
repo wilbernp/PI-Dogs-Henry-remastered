@@ -1,5 +1,6 @@
+import { sequelize } from "@/config/db-connection";
 import { CreationOptional, DataTypes, InferAttributes, InferCreationAttributes, Model } from "sequelize";
-import { sequelize } from "../../config/db-connection";
+
 
 export class Temperament extends Model<InferAttributes<Temperament>, 
 InferCreationAttributes<Temperament>>{

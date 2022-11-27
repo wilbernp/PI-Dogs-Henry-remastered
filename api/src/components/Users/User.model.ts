@@ -1,3 +1,4 @@
+import { sequelize } from "@/config/db-connection";
 import {
     DataTypes,
     Model,
@@ -6,7 +7,6 @@ import {
     CreationOptional
 } from "sequelize";
 
-import { sequelize } from "../../config/db-connection";
 
 export class User extends Model<InferAttributes<User>, InferCreationAttributes<User>>{
     declare id: CreationOptional<number>;
@@ -42,6 +42,6 @@ User.init({
     },
     createdAt: DataTypes.DATE,
     updatedAt: DataTypes.DATE
-}, { sequelize})
+}, { sequelize:sequelize})
 
 

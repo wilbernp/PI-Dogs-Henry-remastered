@@ -1,11 +1,10 @@
 import { User } from "./User.model";
-import { IUserLogin, IUserRegister, IUserResponse, IUserTokenPayload } from "./User.interfaces";
-import { encryptPassword, verifyPassword } from "../../utils/bcrypt.handle";
-import { generateToken } from "../../utils/jwt.handle";
-import { handleError, handleResponse } from "../../utils/response.handle";
+import { IUserLogin, IUserRegister, IUserResponse } from "./User.interfaces";
+import { encryptPassword, verifyPassword } from "@/utils/bcrypt.handle";
+import { handleError, handleResponse } from "@/utils/response.handle";
+import { generateToken } from "@/utils/jwt.handle";
 
 const generateUserResponse = (user:IUserResponse):IUserResponse=>{
-    console.log(user)
     const {token, id, name, lastname, email, createdAt, updatedAt} = user
     return {token, id, name, lastname, email, createdAt, updatedAt}
 }

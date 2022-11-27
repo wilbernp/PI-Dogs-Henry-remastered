@@ -1,3 +1,5 @@
+import { IResponseDefaultProps } from "@/interfaces/Response.interfaces";
+
 interface IUserBase {
     name:string;
     lastname:string;
@@ -12,11 +14,8 @@ export interface IUserLogin {
     email:string;
     password:string;
 }
-export interface IUserResponse extends IUserBase{
-    id:number;
+export interface IUserResponse extends IUserBase, IResponseDefaultProps{
     token:string;
-    createdAt:Date;
-    updatedAt:Date;
 }
 
 export interface IUserTokenPayload extends IUserBase{

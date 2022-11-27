@@ -1,7 +1,7 @@
+import { IUserTokenPayload } from "@/components/Users/User.interfaces";
+import { handleError } from "@/utils/response.handle";
 import { NextFunction, Request, Response } from "express";
 import { verify } from "jsonwebtoken";
-import { IUserTokenPayload } from "../interfaces/User.interfaces";
-import { handleError } from "../utils/response.handle";
 
 export const authenticate = (req: Request, res: Response, next: NextFunction) => {
     const token = req.headers.authorization?.split(" ")[1]

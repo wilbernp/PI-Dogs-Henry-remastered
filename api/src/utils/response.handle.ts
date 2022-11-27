@@ -1,4 +1,4 @@
-import { IResponse } from "../interfaces/Response.interface"
+import { IResponse } from "../interfaces/Response.interfaces"
 
 export const handleError = (message:string, status:number) =>{
     const error: IResponse<null> = {

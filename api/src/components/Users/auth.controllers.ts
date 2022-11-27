@@ -1,6 +1,5 @@
+import { handleError } from "@/utils/response.handle";
 import { Request, Response } from "express";
-
-import { handleError } from "../../utils/response.handle"; 
 import { registerService, LoginService } from "./auth.services";
 import { IUserLogin, IUserRegister } from "./User.interfaces";
 

@@ -1,3 +1,4 @@
+import { sequelize } from "@/config/db-connection";
 import { 
     DataTypes, 
     Model, 
@@ -5,8 +6,6 @@ import {
     InferCreationAttributes,
     CreationOptional
 } from "sequelize";
-
-import { sequelize } from "../../config/db-connection";
 
 export class Dog extends Model<InferAttributes<Dog>, InferCreationAttributes<Dog>>{
     declare id: CreationOptional<string>

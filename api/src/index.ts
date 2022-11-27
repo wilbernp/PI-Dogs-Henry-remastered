@@ -1,3 +1,5 @@
+import 'ts-path-mapping';
+import "dotenv/config";
 import { app } from "./app"
 import { sequelize } from "./config/db-connection"
 

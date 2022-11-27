@@ -7,3 +7,9 @@ export interface IResponse<T> {
     data:T | T[];
     error:IError | null;
 }
+
+export interface IResponseDefaultProps {
+    id:number;
+    createdAt:Date;
+    updatedAt:Date;
+}

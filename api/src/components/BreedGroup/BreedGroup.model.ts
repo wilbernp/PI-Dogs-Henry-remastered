@@ -1,5 +1,5 @@
+import { sequelize } from "@/config/db-connection";
 import { CreationOptional, DataTypes, InferAttributes, InferCreationAttributes, Model } from "sequelize";
-import { sequelize } from "../../config/db-connection";
 
 export class BreedGroup extends Model<InferAttributes<BreedGroup>, 
 InferCreationAttributes<BreedGroup>>{

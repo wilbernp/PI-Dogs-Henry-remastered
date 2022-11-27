@@ -4,7 +4,6 @@ interface CleanFileName {
 }
 
 export const handleCleanFileName = (filename:string):CleanFileName => {
-    console.log("filename", filename)
     const arrayFile = filename.split(".")
     const cleanName = arrayFile[0]
     if (arrayFile.length>2) {

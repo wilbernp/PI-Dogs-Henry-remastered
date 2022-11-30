@@ -8,7 +8,7 @@ import {
 } from "sequelize";
 
 export class Dog extends Model<InferAttributes<Dog>, InferCreationAttributes<Dog>>{
-    declare id: CreationOptional<string>
+    declare id: CreationOptional<number>
     declare name:string;
     declare min_life_span:number;
     declare max_life_span:number;
@@ -24,8 +24,9 @@ export class Dog extends Model<InferAttributes<Dog>, InferCreationAttributes<Dog
 
 Dog.init({
     id:{
-        type: DataTypes.UUIDV4,
-        primaryKey:true
+        type: DataTypes.INTEGER,
+        primaryKey:true,
+        autoIncrement:true
     },
     name:{
         type:DataTypes.STRING(50),

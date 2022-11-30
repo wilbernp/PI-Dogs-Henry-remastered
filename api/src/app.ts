@@ -1,8 +1,11 @@
 import  express  from "express";
 import cors from "cors";
 import morgan from "morgan";
-import { authRouter } from "./routes/auth/auth.routes";
+
 import { apiRouter } from "./routes/api/index.routes";
+import { authRouter } from "./routes/auth/auth.routes";
+
+
 
 
 // consts 

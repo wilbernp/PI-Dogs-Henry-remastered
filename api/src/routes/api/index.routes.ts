@@ -1,5 +1,5 @@
+import { handleDinamicImport } from "@/utils/dinamicImport.handle";
 import { Router } from "express";
-import { handleDinamicImport } from "../../utils/dinamicImport.handle";
 
 const PATH_ROUTER = `${__dirname}`
 const router = Router()

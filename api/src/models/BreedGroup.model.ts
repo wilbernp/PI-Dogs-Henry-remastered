@@ -4,14 +4,14 @@ import { CreationOptional, DataTypes, InferAttributes, InferCreationAttributes, 
 export class BreedGroup extends Model<InferAttributes<BreedGroup>, 
 InferCreationAttributes<BreedGroup>>{
     declare id: CreationOptional<number>;
-    name:string;
+    declare name:string;
     declare createdAt: CreationOptional<Date>;
     declare updatedAt: CreationOptional<Date>;
 }
 
 BreedGroup.init({
     id:{
-        type:DataTypes.INTEGER.UNSIGNED,
+        type:DataTypes.INTEGER,
         primaryKey:true,
         autoIncrement:true
     },
@@ -23,6 +23,6 @@ BreedGroup.init({
         type:DataTypes.DATE
     },
     updatedAt:{
-        type:DataTypes.STRING
+        type:DataTypes.DATE
     }
 }, {sequelize})

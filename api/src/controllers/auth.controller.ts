@@ -8,7 +8,7 @@ import { Request, Response } from "express";
 const removePassword = (user: UserResponseInterface) => {
     const { id, name, lastname, email, createdAt, updatedAt} = user
 
-    return { id, name, lastname, email, createdAt, updatedAt}
+    return { id, name, lastname, email, createdAt, updatedAt }
 }
 
 export const registerCtrl = async (req: Request, res: Response) => {
@@ -30,7 +30,7 @@ export const loginCtrl = async (req: Request, res: Response) => {
         const { email, password } = req.body as LoginInterface
         const user = await loginService({ email, password })
         const userRemovedPassword = removePassword(user)
-        const token = await generateToken(user)
+        const token = generateToken(user)
         
         res.send({...userRemovedPassword, token})
     } catch (error) {

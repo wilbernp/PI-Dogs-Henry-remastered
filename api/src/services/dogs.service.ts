@@ -3,7 +3,7 @@ import { Dog } from "@/models/Dog.model"
 
 export const createDogService = async (dog:DogInterface) => {
     const dogCreated = await Dog.create(dog)
-    return dogCreated
+    return dogCreated.dataValues
 }
 
 export const getDogsService = async () => {
@@ -13,27 +13,30 @@ export const getDogsService = async () => {
 
 export const getDogByIdService = async (id:number) => {
     const dog = await Dog.findByPk(id)
-    return dog
+    return dog.dataValues
 }
 
 export const updateDogService = async (id:number, dogUpdate:DogUpdateInterface) => {
-    const findDog = await getDogByIdService(id)
-
-    if (!findDog) {
-        throw new Error(`The dog with id ${id} does not exist`);
-    }
+    await validateIfExistingDog(id)
     const dogUpdated = await Dog.update(dogUpdate, {where:{id}, returning:true})
-    return  dogUpdated[1][0]
+    return  dogUpdated[1][0].dataValues
 }
 
 export const deleteDogService = async (id:number) => {
 
+   const findDog = await validateIfExistingDog(id)
+   await Dog.destroy({where:{id}, cascade:true})
+
+   return {message:`Dog removed successfully`, data:findDog}
+}
+
+
+const  validateIfExistingDog = async (id:number) => {
     const findDog = await getDogByIdService(id)
+
     if (!findDog) {
         throw new Error(`The dog with id ${id} does not exist`);
     }
 
-   await Dog.destroy({where:{id}, cascade:true})
-
-   return {message:`Dog  removed successfully`, data:findDog}
+    return findDog
 }

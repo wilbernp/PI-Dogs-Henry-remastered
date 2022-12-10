@@ -1,6 +1,6 @@
 import { createDogCtrl, deleteDogCtrl, getDogByIdCtrl, getDogsCtrl, updateDogCtrl } from "@/controllers/dogs.controller";
 import { DogCreateDTO, DogUpdateDTO } from "@/dto/Dog.dto";
-import { authenticate } from "@/middlewares/auth.middleware";
+import { authenticate } from "@/middlewares/authenticate.middleware";
 import { validateBody } from "@/middlewares/validateBody.middleware";
 import { Router } from "express";
 const router = Router()

@@ -12,6 +12,7 @@ export const authenticate = (req: Request, res: Response, next: NextFunction) =>
         }
 
         const decodedToken = verify(token, process.env.SECRET) as TokenPayloadInterface
+        console.log(decodedToken)
         req.user = decodedToken
         next()
     } catch (error) {

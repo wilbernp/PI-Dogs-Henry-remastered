@@ -1,4 +1,4 @@
-import { DogInterface } from "@/interfaces/Dog.interface";
+import { DogInterface, DogUpdateInterface } from "@/interfaces/Dog.interface";
 import { createDogService, deleteDogService, getDogByIdService, getDogsService, updateDogService } from "@/services/dogs.service";
 import { errorHandle } from "@/utils/error.handle";
 import { Request, Response } from "express";
@@ -6,16 +6,13 @@ import { Request, Response } from "express";
 
 
 export const createDogCtrl = async (req:Request, res:Response) => {
-    // const {
-    //     name, max_height, min_height, 
-    //     max_life_span, min_life_span,
-    //     max_weight, min_weight, image_url} = req.body as DogInterface
-    // try {
-    //     const dog = await createDogService()
-    //     res.status(201).send(dog)
-    // } catch (error) {
-    //     errorHandle(error, res)
-    // }
+    const body = req.body as DogInterface
+    try {
+        const dog = await createDogService(body)
+        res.status(201).send(dog)
+    } catch (error) {
+        errorHandle(error, res)
+    }
 }
 
 export const getDogsCtrl = async (req:Request, res:Response) => {
@@ -28,8 +25,9 @@ export const getDogsCtrl = async (req:Request, res:Response) => {
 }
 
 export const getDogByIdCtrl = async (req:Request, res:Response) => {
+    const {id} = req.params
     try {
-        const dog = await getDogByIdService()
+        const dog = await getDogByIdService(Number(id))
         res.send(dog)
     } catch (error) {
         errorHandle(error, res)
@@ -37,8 +35,10 @@ export const getDogByIdCtrl = async (req:Request, res:Response) => {
 }
 
 export const updateDogCtrl = async (req:Request, res:Response) => {
+    const {id} = req.params
+    const body = req.body as DogUpdateInterface
     try {
-        const dog = await updateDogService()
+        const dog = await updateDogService(Number(id), body)
         res.send(dog)
     } catch (error) {
         errorHandle(error, res)
@@ -46,9 +46,10 @@ export const updateDogCtrl = async (req:Request, res:Response) => {
 }
 
 export const deleteDogCtrl = async (req:Request, res:Response) => {
+    const {id} = req.params
     try {
-        const dog = await deleteDogService()
-        res.send(dog)
+        const data = await deleteDogService(Number(id))
+        res.send(data)
     } catch (error) {
         errorHandle(error, res)
     }

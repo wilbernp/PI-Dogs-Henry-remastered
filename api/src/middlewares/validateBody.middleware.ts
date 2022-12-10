@@ -1,19 +1,24 @@
-import { RefineCb, RefineObject } from "@/interfaces/validateBody.interface";
+import { RefineOptions } from "@/interfaces/validateBody.interface";
 import { NextFunction, Request, Response } from "express";
-import { date, z, ZodSchema, ZodTypeAny } from "zod";
-
+import { SafeParseReturnType, ZodSchema } from "zod";
 
 
 export const validateBody = <SchemaType>(
     schema:ZodSchema, 
-    refineCb?:RefineCb<SchemaType>,
-    refineObject?:RefineObject,
+    refineOptions?:RefineOptions<SchemaType>
     ) =>{
 
     return (req:Request, res:Response, next:NextFunction) =>{
-        const result = schema
-        .refine(refineCb, refineObject)
-        .safeParse(req.body)
+        let result:SafeParseReturnType<any, any>
+        
+        if (!refineOptions) {
+            result = schema.safeParse(req.body)
+        } else {
+            result = schema.refine(refineOptions.refineCb, refineOptions.refineObject)
+            .safeParse(req.body)
+            
+        }
+        
 
         if (result.success === false) {
             return res.status(400).json(result.error.issues)

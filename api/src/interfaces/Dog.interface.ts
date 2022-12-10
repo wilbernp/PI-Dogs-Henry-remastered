@@ -8,3 +8,5 @@ export interface DogInterface {
     max_weight:number;
     image_url:string;
 }
+
+export type DogUpdateInterface = Partial<DogInterface>
